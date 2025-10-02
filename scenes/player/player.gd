@@ -38,11 +38,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, direction * SPEED, 50)
 		animated_sprite_2d.play("walk")
 	else:
-		velocity.x = move_toward(velocity.x, 0, 20)
+		velocity.x = move_toward(velocity.x, 0, 17.5)
 		animated_sprite_2d.play("default")
 	if Input.is_action_just_pressed("dash") and not dashed_already:
 		if direction:
-			velocity.x += direction * 200
+			velocity.x += direction * 250
 			dashed_already = true
 
 	move_and_slide()

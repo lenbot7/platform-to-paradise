@@ -571,7 +571,7 @@ sources/3 = SubResource("TileSetAtlasSource_6q06x")
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_hyk8p")]
-position = Vector2(122, 57)
+position = Vector2(123.00001, 57)
 floor_stop_on_slope = false
 floor_max_angle = 0.87266463
 floor_snap_length = 10.0

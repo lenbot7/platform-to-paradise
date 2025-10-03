@@ -12,22 +12,30 @@ const JUMP_VELOCITY = -350.0
 
 
 var dashed_already: bool = false
+var extrajumped_already: bool = false
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if is_on_floor():
 		dashed_already = false
+		extrajumped_already = false
 	velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	elif Input.is_action_just_pressed("jump") and (not extrajumped_already) and global_position.y < -1300:
+		extrajumped_already = true
+		if velocity.y > 0:
+			velocity.y = JUMP_VELOCITY
+		else:
+			velocity.y += JUMP_VELOCITY
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
-	if Input.is_action_just_pressed("dash") and not dashed_already:
+	if Input.is_action_just_pressed("dash") and (not dashed_already):
 		velocity.x += direction * 500
 		dashed_already = true
 	if velocity.x < 0:

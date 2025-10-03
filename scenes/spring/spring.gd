@@ -17,4 +17,8 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		animated_sprite_2d.play("bounce")
-		body.velocity.y = -500
+		if body.velocity.y > 0:
+			body.velocity.y = -500
+		else:
+			body.velocity.y += -500
+		body.extrajumped_already = false
